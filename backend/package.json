@@ -1,0 +1,30 @@
+{
+  "name": "development-challenge-two",
+  "version": "1.0.0",
+  "description": "![logo medcloud-03 white copy](https://user-images.githubusercontent.com/46347123/158176045-de9fefb0-35e2-4515-83ff-c132608aa870.png)",
+  "main": "createDb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "/bin/sh tsc_eval.sh",
+    "prestart": "npm run build && npm run db:reset",
+    "start": "node .",
+    "db:reset": "node ./build/db/deleteDb.js && node ./build/db/createDb.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ladcs/development-challenge-two.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ladcs/development-challenge-two/issues"
+  },
+  "homepage": "https://github.com/ladcs/development-challenge-two#readme",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.234.0",
+    "@aws-sdk/client-s3": "^3.231.0",
+    "@aws-sdk/util-dynamodb": "^3.234.0",
+    "aws-sdk": "^2.1278.0"
+  }
+}

@@ -3,3 +3,17 @@ learningItensDynamoDb.js
 learningDdbClient.js
 learningSampleClient.js
 build
+node_modules
+.serverless
+readmeServerless
+.build
+
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# esbuild directories
+.esbuild

@@ -1,5 +1,5 @@
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { ddbClient } from "./ddbClient.js";
+import { ddbClient } from "./ddbClient";
 
 const marshallOptions = {
   convertEmptyValues: false,

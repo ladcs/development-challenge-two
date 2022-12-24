@@ -1,0 +1,37 @@
+app: medcloud
+service: MedCloud
+frameworkVersion: '3'
+
+custom:
+  tableName: '${sls:stage}-Patients'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - arn:aws:dynamodb:us-east-1:*:table/Patients
+  environment:
+    USERS_TABLE: ${self:custom.tableName}
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000'
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - httpApi: '*'
+
+plugins:
+  - serverless-plugin-typescript

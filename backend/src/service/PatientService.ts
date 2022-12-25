@@ -3,7 +3,6 @@ import PatientsDb from '../db/PatientsDb';
 import IPatient from '../interfaces/IPatient';
 import ItensCRUD from '../db/ItensCRUD';
 import BadRequest from '../error/BadRequest';
-import emailSchema from '../schema/email';
 import { emailValidate, patientValidate } from './error';
 import NotFound from '../error/NotFound';
 

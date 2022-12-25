@@ -47,8 +47,8 @@ export default abstract class ItensCRUD<T> implements PatientsDb<T>{
       const data = Items.map(element => unmarshall(element));
       return data;
     } catch (error) {
+      throw new Error(`SELECT * FROM ${this._tableName}`);
       console.error(error)
-      throw new Error("Method not implemented.");
     }
   }
 

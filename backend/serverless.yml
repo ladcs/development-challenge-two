@@ -1,5 +1,5 @@
 app: medcloud
-service: MedCloud
+service: medcloud-crud-Patients
 frameworkVersion: '3'
 
 custom:
@@ -14,12 +14,7 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            - dynamodb:Query
-            - dynamodb:Scan
-            - dynamodb:GetItem
-            - dynamodb:PutItem
-            - dynamodb:UpdateItem
-            - dynamodb:DeleteItem
+            - dynamodb:*
           Resource:
             - arn:aws:dynamodb:us-east-1:*:table/Patients
   environment:

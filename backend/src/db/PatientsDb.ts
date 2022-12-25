@@ -17,8 +17,8 @@ export default class PatientsDb extends ItensCRUD<IPatient> {
         UpdateExpression: "SET address = :a, PatientName = :P, BirthDate = :B",
         ExpressionAttributeValues: marshall({
           ":a": obj.address,
-          ":P": obj.PatientName,
-          ":B": obj.BirthDate,
+          ":P": obj.patientName,
+          ":B": obj.birthDate,
         }),
         ReturnValues:"UPDATED_NEW",
       };

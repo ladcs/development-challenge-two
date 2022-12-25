@@ -5,7 +5,7 @@ interface address {
 
 export default interface IPatient {
   email?: string,
-  PatientName: string,
-  BirthDate: string,
+  patientName: string,
+  birthDate: string,
   address: address,
 }

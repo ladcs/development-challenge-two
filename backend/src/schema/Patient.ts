@@ -11,5 +11,4 @@ export default z.object({
     required_error: ERRORS.EMPTY_NAME,
     invalid_type_error: ERRORS.NOT_STRING_NAME,
   }),
-  birthDate: z.string().datetime(),
 });

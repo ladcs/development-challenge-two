@@ -1,4 +1,5 @@
 import React, { createContext } from 'react';
+import IFilter from '../interface/IFilter';
 import IPatient from '../interface/IPatient';
 
 type INITIAL = {
@@ -6,6 +7,8 @@ type INITIAL = {
   setData: React.Dispatch<React.SetStateAction<IPatient[]>>,
   numberPatients: number,
   setNumberPatients: React.Dispatch<React.SetStateAction<number>>,
+  filter: IFilter,
+  setFilter: React.Dispatch<React.SetStateAction<IFilter>>,
 }
 
 const INITIAL_STATE: INITIAL = {
@@ -13,6 +16,11 @@ const INITIAL_STATE: INITIAL = {
   setData: () => {},
   numberPatients: 0,
   setNumberPatients: () => {},
+  filter: {
+    filterByEmail: '',
+    filterByName: '',
+  },
+  setFilter: () => {},
 };
 
 const myContext = createContext({

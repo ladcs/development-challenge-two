@@ -9,16 +9,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import IPatient from '../interface/IPatient';
 import { useMyContext } from '../context/hook';
+import IEvent from '../interface/IEvent';
 
 interface props {
   open: boolean;
   close: () => void;
   patient: IPatient;
-}
-
-interface IEvent {
-  id: string;
-  value: string;
 }
 
 const validateDate = (day: number, month: number) => {

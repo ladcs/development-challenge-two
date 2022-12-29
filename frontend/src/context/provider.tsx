@@ -3,6 +3,7 @@ import MyContext from './myContext';
 import IPatient from '../interface/IPatient';
 // import axios from 'axios';
 import simulaData from '../data'
+import IFilter from '../interface/IFilter';
 
 interface IProps {
   children: React.ReactNode;
@@ -14,6 +15,10 @@ const Provider = ({ children }:IProps) => {
   const [data, setData] = useState<IPatient[]>([]);
   const [getData, setGetData] = useState<boolean>(true)
   const [numberPatients, setNumberPatients] = useState<number>(0)
+  const [filter, setFilter] = useState<IFilter>({
+    filterByEmail: '',
+    filterByName: '',
+  });
 /*
   const saveAPI = async () => {
     try {
@@ -36,7 +41,13 @@ const Provider = ({ children }:IProps) => {
     if (getData) saveAPI();
   });
 
-  const contextValue = { data, setData, numberPatients, setNumberPatients };
+  const contextValue = { 
+    filter,
+    setFilter,
+    data,
+    setData,
+    numberPatients,
+    setNumberPatients };
   return (
     <MyContext.Provider value={ { state: contextValue } }>
       { children }

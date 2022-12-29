@@ -8,6 +8,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useMyContext } from '../context/hook';
+import IPatient from '../interface/IPatient';
+import IEvent from '../interface/IEvent';
 
 interface newPatient {
   email: string,
@@ -19,20 +21,17 @@ interface newPatient {
   number: number,
 }
 
-interface IEvent {
-  id: string;
-  value: string;
-}
-
 interface props {
   open: boolean;
   close: () => void;
 }
 
-const validateDate = (day: number, month: number) => {
-  if (day > 31 || day < 0) return false
-  if (month > 12 || month < 0) return false
-  return true;
+const validateDate = (day: number, month: number, data: IPatient[], email: string) => {
+  if (day > 31 || day < 0) return false;
+  if (month > 12 || month < 0) return false;
+  const exist = data.filter(({email: e}) => e === email);
+  if (exist.length === 0) return true;
+  return false;
 }
 
 const CreateForm = ({open, close}: props) => {
@@ -70,7 +69,7 @@ const CreateForm = ({open, close}: props) => {
           type='string'
           fullWidth
           variant='standard'
-          value={newPatient.patientName}
+          value={newPatient.email}
           onChange={(e)=> onChange(e.target)}
         />
         <TextField
@@ -157,7 +156,7 @@ const CreateForm = ({open, close}: props) => {
           email,
         } = newPatient;
         const { day, month, year } = newPatient;
-        const pass = validateDate(day, month)
+        const pass = validateDate(day, month, data, email);
         if (pass) {
           close();
           const newBirthDate = [day, month, year].join('/');
@@ -171,7 +170,16 @@ const CreateForm = ({open, close}: props) => {
           setData([...data, patientInCache]);
           /*
           await axios.post('https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient', patientInCache);*/
-        } else alert('data inválida')
+        } else alert('data inválida ou usuário já existe');
+        setNewPatient({
+          email: '',
+          patientName: '',
+          street: '',
+          day: '' as unknown as number,
+          month: '' as unknown as number,
+          year: '' as unknown as number,
+          number: '' as unknown as number,
+        })
       }}>
         edit
       </Button>

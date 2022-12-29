@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import CreateForm from './CreateForm';
+import FilterForm from './FilterForm';
 
 const Header = () => {
-  const handleClose = () => {
-    setOpen(false)
-  }
+  const [openCreate, setOpenCreate] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
 
-  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    openCreate ? setOpenCreate(false) : setOpenFilter(false);
+  }
   return (
   <div>
   <h1> Pacientes </h1>
   <Button
   onClick={(e)=> {
     e.preventDefault();
-    setOpen(true);
+    setOpenCreate(true);
   }}
   >Adicionar novo Paciente</Button>
-  <CreateForm open={open} close={handleClose} />
+  <CreateForm open={openCreate} close={handleClose} />
+  <Button
+  onClick={(e)=> {
+    e.preventDefault();
+    setOpenFilter(true);
+  }}> criar Filtro </Button>
+  <FilterForm open={openFilter} close={handleClose} />
   </div>
 )}
 

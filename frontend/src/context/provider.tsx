@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect , useState } from 'react';
 import MyContext from './myContext';
 import IPatient from '../interface/IPatient';
-import axios from 'axios';
+// import axios from 'axios';
+import simulaData from '../data'
 
 interface IProps {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ const Provider = ({ children }:IProps) => {
   const [data, setData] = useState<IPatient[]>([]);
   const [getData, setGetData] = useState<boolean>(true)
   const [numberPatients, setNumberPatients] = useState<number>(0)
-
+/*
   const saveAPI = async () => {
     try {
       const result = await axios.get('https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient');
@@ -24,6 +25,12 @@ const Provider = ({ children }:IProps) => {
       console.log(error);
     }
   };  
+*/
+  const saveAPI = async () => {
+    setData(simulaData.patients);
+    setNumberPatients(simulaData.count);
+    setGetData(false);
+  };
 
   useEffect(() => {
     if (getData) saveAPI();

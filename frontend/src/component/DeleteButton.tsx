@@ -1,0 +1,40 @@
+import React, { FormEvent } from "react";
+import DeleteIcon from '@mui/icons-material/Delete';
+import SvgIcon from '@mui/material/SvgIcon';
+import { useMyContext } from "../context/hook";
+import IPatient from "../interface/IPatient";
+import Button from '@mui/material/Button';
+// import axios from 'axios';
+
+interface props {
+  email: string,
+}
+
+const onClickEdit = async (
+  e: FormEvent,
+  email: string,
+  data: IPatient[],
+  setData: React.Dispatch<React.SetStateAction<IPatient[]>>) => {
+  e.preventDefault();
+  try {
+    const newData = data.filter((patient) => email !== patient.email)
+    setData(newData);
+    // await axios.get(`https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient/${email}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const EditButton = ({ email }: props) => {
+  const { data, setData } = useMyContext();
+  return (
+    <Button
+    type="button"
+    onClick={async (e) => await onClickEdit(e, email, data, setData)}
+    >
+      <SvgIcon component={DeleteIcon} sx={ {color: 'red' } }/>
+    </Button>
+  );
+};
+
+export default EditButton;

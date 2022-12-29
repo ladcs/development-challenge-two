@@ -1,5 +1,5 @@
 app: medcloud
-service: medcloud-crud-Patients
+service: medcloud-crud
 frameworkVersion: '3'
 
 custom:
@@ -27,6 +27,7 @@ functions:
     handler: handler.handler
     events:
       - httpApi: '*'
+        cors: true
 
 plugins:
   - serverless-plugin-typescript

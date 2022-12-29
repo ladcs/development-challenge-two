@@ -32,7 +32,7 @@
     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
-  "include": ["src/**/*.ts", "handler.ts", "../src/libs/lambda.ts", "../src/libs/handler-resolver.ts", "../src/libs/api-gateway.ts"],
+  "include": ["src/**/*.ts", "handler.ts", "../src/libs/lambda.ts", "../src/libs/handler-resolver.ts", "../src/libs/api-gateway.ts", "arrumando/src/libs/api-gateway.ts", "arrumando/src/libs/handler-resolver.ts", "arrumando/src/libs/lambda.ts"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",

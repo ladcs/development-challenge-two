@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useMyContext } from './context/hook';
 
 function App() {
+  const { data } = useMyContext()
+  console.log(data)
   return (
     <div className="App">
       <header className="App-header">

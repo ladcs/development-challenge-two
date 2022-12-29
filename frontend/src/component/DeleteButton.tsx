@@ -10,7 +10,7 @@ interface props {
   email: string,
 }
 
-const onClickEdit = async (
+const onClickDelete = async (
   e: FormEvent,
   email: string,
   data: IPatient[],
@@ -25,16 +25,16 @@ const onClickEdit = async (
   }
 }
 
-const EditButton = ({ email }: props) => {
+const DeleteButton = ({ email }: props) => {
   const { data, setData } = useMyContext();
   return (
     <Button
     type="button"
-    onClick={async (e) => await onClickEdit(e, email, data, setData)}
+    onClick={async (e) => await onClickDelete(e, email, data, setData)}
     >
       <SvgIcon component={DeleteIcon} sx={ {color: 'red' } }/>
     </Button>
   );
 };
 
-export default EditButton;
+export default DeleteButton;

@@ -1,5 +1,6 @@
 import React from "react";
 import { useMyContext } from "../context/hook";
+import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 
 const Tbody = () => {
@@ -25,6 +26,7 @@ const Tbody = () => {
           </td>
           <td>
             <DeleteButton email={ patient.email } />
+            <EditButton patient={patient}/>
           </td>
         </tr>
       ))}

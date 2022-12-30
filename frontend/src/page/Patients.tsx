@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import Header from '../component/Header'
-import Tbody from '../component/Tbody';
-import Thead from '../component/Thead'
 import TableContainer from '@mui/material/TableContainer';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import { TablePagination } from '@mui/material';
+
+import HeaderTable from '../component/HeaderTable'
+import Tbody from '../component/Tbody';
+import Thead from '../component/Thead'
 import { useMyContext } from '../context/hook';
 
 const Patients = () => {
@@ -23,7 +24,7 @@ const Patients = () => {
 
   return(
   <div>
-    <Header/>
+    <HeaderTable/>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"

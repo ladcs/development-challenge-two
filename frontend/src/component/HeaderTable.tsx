@@ -5,7 +5,7 @@ import { IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
 import CreateForm from './CreateForm';
 import FilterForm from './FilterForm';
 
-const Header = () => {
+const HeaderTable = () => {
   const [openCreate, setOpenCreate] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
 
@@ -14,7 +14,11 @@ const Header = () => {
   }
   return (
   <div>
-    <h1> Pacientes </h1>
+    <Typography
+      align='center'
+      variant='h1'
+      sx={{color: "#1976d2"}}
+      > Pacientes </Typography>
     <Toolbar sx={{
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
@@ -48,4 +52,4 @@ const Header = () => {
   </div>
 )}
 
-export default Header;
+export default HeaderTable;

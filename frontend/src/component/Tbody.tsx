@@ -1,4 +1,7 @@
 import React, { Dispatch, useEffect, useState } from "react";
+import TableBody from "@mui/material/TableBody";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
 import { useMyContext } from "../context/hook";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
@@ -19,38 +22,43 @@ const createFilterData = (
   setFilterData(dataByEmail);
 }
 
-const Tbody = () => {
+interface props {
+  page: number;
+  forPage: number;
+}
+
+const Tbody = ({page, forPage}: props) => {
   const { data, filter } = useMyContext();
-  const [filterData, setFilterData] = useState([] as IPatient[]);
+  const [filterData, setFilterData] = useState<IPatient[]>([]);
   useEffect(() => {
     createFilterData(setFilterData, filter, data)
   }, [filter, data]);
   return (
-    <tbody>
-      {filterData.map((patient)=> (
-        <tr key={ patient.email }>
-          <td>
+    <TableBody>
+      {filterData.slice(page * forPage, page * forPage + forPage).map((patient)=> (
+        <TableRow key={ patient.email }>
+          <TableCell component="th" scope="row" align='center'>
             { patient.patientName }
-          </td>
-          <td>
+          </TableCell>
+          <TableCell align="center">
             { patient.email }
-          </td>
-          <td>
+          </TableCell>
+          <TableCell align="center">
             { patient.birthDate }
-          </td>
-          <td>
+          </TableCell>
+          <TableCell align="center">
             { patient.address.street }
-          </td>
-          <td>
+          </TableCell>
+          <TableCell align="center">
             { patient.address.number }
-          </td>
-          <td>
+          </TableCell>
+          <TableCell align="center">
             <DeleteButton email={ patient.email } />
             <EditButton patient={patient}/>
-          </td>
-        </tr>
+          </TableCell>
+        </TableRow>
       ))}
-    </tbody>
+    </TableBody>
   );
 };
 

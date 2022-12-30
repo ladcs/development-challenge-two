@@ -1,28 +1,31 @@
 import React from 'react';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
 
 const Thead = () => (
-  <thead>
-    <tr>
-      <th>
+  <TableHead>
+    <TableRow>
+      <TableCell align="center" sx={{color: '#1976d2', fontWeight: 'bold'}}>
         Nome
-      </th>
-      <th>
+      </TableCell>
+      <TableCell align="center" sx={{color: '#1976d2', fontWeight: 'bold'}}>
         e-mail
-      </th>
-      <th>
+      </TableCell>
+      <TableCell align="center" sx={{color: '#1976d2', fontWeight: 'bold'}}>
         data de nascimento
-      </th>
-      <th>
+      </TableCell>
+      <TableCell align="center" sx={{color: '#1976d2', fontWeight: 'bold'}}>
         rua
-      </th>
-      <th>
+      </TableCell>
+      <TableCell align="center" sx={{color: '#1976d2', fontWeight: 'bold'}}>
         número
-      </th>
-      <th>
+      </TableCell>
+      <TableCell align="center" sx={{color: '#1976d2', fontWeight: 'bold'}}>
         remove/edit
-      </th>
-    </tr>
-  </thead>
+      </TableCell>
+    </TableRow>
+  </TableHead>
 )
 
 export default Thead;

@@ -36,7 +36,11 @@ const Tbody = ({page, forPage}: props) => {
   return (
     <TableBody>
       {filterData.slice(page * forPage, page * forPage + forPage).map((patient)=> (
-        <TableRow key={ patient.email }>
+        <TableRow key={ patient.email }
+        style={{
+          height: 10 * Math.max(0, Math.max(0, (1 + page) * forPage - data.length)),
+        }}
+        >
           <TableCell component="th" scope="row" align='center'>
             { patient.patientName }
           </TableCell>
@@ -54,10 +58,19 @@ const Tbody = ({page, forPage}: props) => {
           </TableCell>
           <TableCell align="center">
             <DeleteButton email={ patient.email } />
+          </TableCell>
+          <TableCell align='left'>
             <EditButton patient={patient}/>
           </TableCell>
         </TableRow>
       ))}
+      <TableRow
+        style={{
+          height: 33 * Math.max(0, Math.max(0, (1 + page) * forPage - data.length)),
+        }}
+        >
+        <TableCell colSpan={6} />
+        </TableRow>
     </TableBody>
   );
 };

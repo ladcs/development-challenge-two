@@ -25,7 +25,9 @@ const Patients = () => {
   <div>
     <Header/>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 } } arial-label='simple table'>
+      <Table sx={{ minWidth: 750 }}
+            aria-labelledby="tableTitle"
+            size='small'>
         <Thead/>
         <Tbody
         page={page}

@@ -22,7 +22,10 @@ const Thead = () => (
         número
       </TableCell>
       <TableCell align="center" sx={{color: '#1976d2', fontWeight: 'bold'}}>
-        remove/edit
+        remover
+      </TableCell>
+      <TableCell align="left" sx={{color: '#1976d2', fontWeight: 'bold'}}>
+        editar
       </TableCell>
     </TableRow>
   </TableHead>

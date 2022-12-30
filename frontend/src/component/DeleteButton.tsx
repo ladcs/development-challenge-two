@@ -34,7 +34,7 @@ const DeleteButton = ({ email }: props) => {
       type="button"
       onClick={async (e) => await onClickDelete(e, email, data, setData)}
       >
-        <SvgIcon component={DeleteIcon} sx={ {color: 'red' } }/>
+        <SvgIcon component={DeleteIcon} sx={ {color: 'gray' } }/>
       </IconButton>
     </Tooltip>
   );

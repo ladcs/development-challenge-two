@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { IconButton, Toolbar, Tooltip, Typography } from "@mui/material";
 import CreateForm from './CreateForm';
 import FilterForm from './FilterForm';
+import SearchIcon from '@mui/icons-material/Search';
 
 const HeaderTable = () => {
   const [openCreate, setOpenCreate] = useState(false);
@@ -17,11 +17,15 @@ const HeaderTable = () => {
     <Typography
       align='center'
       variant='h1'
-      sx={{color: "#1976d2"}}
+      sx={{
+        backgroundColor: "#78BEB9",
+        color: 'white',
+        fontFamily: "Noto Serif"
+      }}
       > Pacientes </Typography>
     <Toolbar sx={{
         pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
+        pr: { xs: 1, sm: 1 }
       }}>
       <Typography
       sx={{ flex: '1 1 100%' }}
@@ -29,6 +33,10 @@ const HeaderTable = () => {
       component='div'
       >
       <Button
+      sx={{
+        backgroundColor: '#A3B5C1',
+        color: 'white'
+      }}
       onClick={(e)=> {
         e.preventDefault();
         setOpenCreate(true);
@@ -44,7 +52,16 @@ const HeaderTable = () => {
             e.preventDefault();
             setOpenFilter(true);
           }}>
-            <FilterListIcon sx={{color: '#1976d2'}} />
+            <SearchIcon sx={{
+            backgroundColor: '#A3B5C1',
+            color: 'white',
+            }} 
+            style={{
+              height: '40px',
+              width: '40px',
+              borderRadius: '20%'
+          }}
+            />
           </IconButton>
         </Tooltip>
     </Toolbar>

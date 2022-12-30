@@ -15,7 +15,7 @@ interface props {
 }
 
 const FilterForm = ({open, close}: props) => {
-  const { setFilter } = useMyContext();
+  const { setFilter, filter } = useMyContext();
   const [newFilter, setNewFilter] = useState({
     filterByName: '',
     filterByEmail:'',
@@ -52,6 +52,16 @@ const FilterForm = ({open, close}: props) => {
           value={newFilter.filterByName}
           onChange={(e) => onChange(e.target)}
         />
+        { filter.filterByName !== '' ? 
+        <Button
+        onClick={(e) => {
+          e.preventDefault();
+          setFilter({...filter, filterByName: ''})
+        }}
+        >
+          delete filtro por nome
+        </Button> : null
+        }
         <TextField
           autoFocus
           margin='dense'
@@ -63,6 +73,19 @@ const FilterForm = ({open, close}: props) => {
           value={newFilter.filterByEmail}
           onChange={(e) => onChange(e.target)}
         />
+        { filter.filterByEmail !== '' ? 
+        <Button
+        onClick={(e) => {
+          e.preventDefault();
+          setFilter({...filter, filterByEmail: ''})
+          setNewFilter({
+            filterByEmail: '',
+            filterByName: ''});
+        }}
+        >
+          delete filtro por nome
+        </Button> : null
+        }
       </DialogContent>
       <DialogActions>
         <Button onClick={ onClick }>

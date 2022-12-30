@@ -25,7 +25,7 @@ const EditButton = ({ patient }: props) => {
           setOpen(true);
         }}
         >
-          <SvgIcon component={ EditIcon } sx={ { color: 'black' } } />
+          <SvgIcon component={ EditIcon } sx={ { color: '#78BEB9' } } />
       </IconButton>
     </Tooltip>
     <EditForm open={open} close={handleClose} patient={ patient }/>

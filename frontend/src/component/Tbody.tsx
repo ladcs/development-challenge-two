@@ -66,7 +66,7 @@ const Tbody = ({page, forPage}: props) => {
       ))}
       <TableRow
         style={{
-          height: 33 * Math.max(0, Math.max(0, (1 + page) * forPage - data.length)),
+          height: 33,
         }}
         >
         <TableCell colSpan={6} />

@@ -14,7 +14,7 @@ export default class PatientsDb extends ItensCRUD<IPatient> {
       const parms: UpdateItemCommandInput = {
         TableName: "Patients",
         Key: marshall({ email }),
-        UpdateExpression: "SET address = :a, PatientName = :P, BirthDate = :B",
+        UpdateExpression: "SET address = :a, patientName = :P, birthDate = :B",
         ExpressionAttributeValues: marshall({
           ":a": obj.address,
           ":P": obj.patientName,

@@ -48,7 +48,6 @@ export default abstract class ItensCRUD<T> implements PatientsDb<T>{
       return data;
     } catch (error) {
       throw new Error(`SELECT * FROM ${this._tableName}`);
-      console.error(error)
     }
   }
 

@@ -2,8 +2,8 @@ import React, { useEffect , useState } from 'react';
 import MyContext from './myContext';
 import IPatient from '../interface/IPatient';
 // import axios from 'axios';
-import simulaData from '../data'
 import IFilter from '../interface/IFilter';
+import simulaData from '../data';
 
 interface IProps {
   children: React.ReactNode;
@@ -22,17 +22,36 @@ const Provider = ({ children }:IProps) => {
 /*
   const saveAPI = async () => {
     try {
-      const result = await axios.get('https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient');
-        setData(result.data.patients);
-        setNumberPatients(result.data.count);
-        setGetData(false);
+      const {data} = await axios.get('https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient');
+      const fixDate = data.patients.map((patient: IPatient) => {
+      const fix = patient.birthDate.split('/');
+      return {
+        birthDate: [fix[1], fix[0], fix[2]].join('/'),
+        patientName: patient.patientName,
+        email: patient.email,
+        address: patient.address,
+        }
+      });
+      setData(fixDate);
+      setNumberPatients(data.count);
+      setGetData(false);
     } catch (error) {
       console.log(error);
     }
-  };  
-*/
+  };*/
+
   const saveAPI = async () => {
-    setData(simulaData.patients);
+    const fixDate = simulaData
+    .patients.map((patient) => {
+      const fix = patient.birthDate.split('/');
+      return {
+        birthDate: [fix[1], fix[0], fix[2]].join('/'),
+        patientName: patient.patientName,
+        email: patient.email,
+        address: patient.address,
+    }
+    });
+    setData(fixDate);
     setNumberPatients(simulaData.count);
     setGetData(false);
   };

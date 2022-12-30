@@ -4,7 +4,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import { useMyContext } from "../context/hook";
 import IPatient from "../interface/IPatient";
 import Button from '@mui/material/Button';
-// import axios from 'axios';
+import axios from 'axios';
 
 interface props {
   email: string,
@@ -19,7 +19,7 @@ const onClickDelete = async (
   try {
     const newData = data.filter((patient) => email !== patient.email)
     setData(newData);
-    // await axios.get(`https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient/${email}`);
+    await axios.get(`https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient/${email}`);
   } catch (error) {
     console.log(error);
   }

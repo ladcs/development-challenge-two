@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import axios from 'axios'
+import axios from 'axios'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -11,14 +11,25 @@ import { useMyContext } from '../context/hook';
 import IPatient from '../interface/IPatient';
 import IEvent from '../interface/IEvent';
 
+const requestToPost = async (toCache: IPatient) => {
+  const fixDate = toCache.birthDate.split('/');
+  const { data } = await axios.post('https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient', {
+    email: toCache.email,
+    patientName: toCache.patientName,
+    address: toCache.address,
+    birthDate: [fixDate[1], fixDate[0], fixDate[2]].join('/'),
+  });
+  return data;
+}
+
 interface newPatient {
   email: string,
   patientName: string,
   street: string,
-  day: number,
-  month: number,
-  year: number,
-  number: number,
+  day: string,
+  month: string,
+  year: string,
+  number: string,
 }
 
 interface props {
@@ -26,9 +37,9 @@ interface props {
   close: () => void;
 }
 
-const validateDate = (day: number, month: number, data: IPatient[], email: string) => {
-  if (day > 31 || day < 0) return false;
-  if (month > 12 || month < 0) return false;
+const validateDate = (day: string, month: string, data: IPatient[], email: string) => {
+  if (parseInt(day) > 31 || parseInt(day) < 1) return false;
+  if (parseInt(month) > 12 || parseInt(month) < 1) return false;
   const exist = data.filter(({email: e}) => e === email);
   if (exist.length === 0) return true;
   return false;
@@ -40,10 +51,10 @@ const CreateForm = ({open, close}: props) => {
     email: '',
     patientName: '',
     street: '',
-    day: null as unknown as number,
-    month: null as unknown as number,
-    year: null as unknown as number,
-    number: null as unknown as number,
+    day: '',
+    month: '',
+    year: '',
+    number: '',
   })
 
   const onChange = ({ id, value }: IEvent) => {
@@ -160,7 +171,7 @@ const CreateForm = ({open, close}: props) => {
         if (pass) {
           close();
           const newBirthDate = [day, month, year].join('/');
-          const newAddress = {number, street};
+          const newAddress = {number: parseInt(number), street};
           const patientInCache= {
             email,
             patientName,
@@ -168,20 +179,19 @@ const CreateForm = ({open, close}: props) => {
             address: newAddress
           };
           setData([...data, patientInCache]);
-          /*
-          await axios.post('https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient', patientInCache);*/
-        } else alert('data inválida ou usuário já existe');
-        setNewPatient({
-          email: '',
-          patientName: '',
-          street: '',
-          day: '' as unknown as number,
-          month: '' as unknown as number,
-          year: '' as unknown as number,
-          number: '' as unknown as number,
-        })
+          await requestToPost(patientInCache);
+          setNewPatient({
+            email: '',
+            patientName: '',
+            street: '',
+            day: '',
+            month: '',
+            year: '',
+            number: '',
+          });
+        } else alert('data inválida ou usuário já existe, para é preciso colocar dois dígitos para dia e mês');
       }}>
-        edit
+        criar
       </Button>
       </DialogActions>
     </Dialog>

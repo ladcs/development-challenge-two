@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import axios from 'axios'
+import axios from 'axios'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -17,26 +17,24 @@ interface props {
   patient: IPatient;
 }
 
-const validateDate = (day: number, month: number) => {
-  if (day > 31 || day < 0) return false
-  if (month > 12 || month < 0) return false
+const validateDate = (day: string, month: string) => {
+  if (parseInt(day) > 31 || parseInt(day) < 1) return false;
+  if (parseInt(month) > 12 || parseInt(month) < 1) return false;
   return true;
 }
 
 const EditForm = ({open, close, patient}: props) => {
   const { setData, data } = useMyContext()
-  const [birthDate, setBirthDate] = useState({ day: patient
+  const [birthDate, setBirthDate] = useState({
+    day: patient
     .birthDate
-    .split('/')
-    .map(date => parseInt(date))[0],
+    .split('/')[1],
     month: patient
     .birthDate
-    .split('/')
-    .map(date => parseInt(date))[1],
+    .split('/')[0],
     year: patient
     .birthDate
-    .split('/')
-    .map(date => parseInt(date))[2]
+    .split('/')[2],
   });
   const [newPatient, setNewPatient] = useState({
     patientName: patient.patientName,
@@ -153,25 +151,25 @@ const EditForm = ({open, close, patient}: props) => {
         const { day, month, year } = birthDate;
         const pass = validateDate(day, month)
         if (pass) {
-          const newBirthDate = [day, month, year].join('/');
+          const newBirthDateCache = [day, month, year].join('/');
+          const newBirthDateApi = [month, day, year].join('/');
           const newAddress = {number, street};
           patientInCache[inCache]= {
             email,
             patientName,
-            birthDate: newBirthDate,
+            birthDate: newBirthDateCache,
             address: newAddress
           };
           setData(patientInCache);
-          /*
+          console.log(patientInCache[inCache]);
           await axios.patch(`https://fgfi62nwy1.execute-api.us-east-1.amazonaws.com/patient/${email}`, {
-            email,
-            patientName,
-            birthDate: newBirthDate,
-            address: newAddress
-          });*/
+            patientName: patientInCache[inCache].patientName,
+            birthDate: newBirthDateApi,
+            address: patientInCache[inCache].address,
+          });
         } else alert('data inválida')
       }}>
-        edit
+        editar
       </Button>
       </DialogActions>
     </Dialog>

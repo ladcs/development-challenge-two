@@ -14,8 +14,8 @@ const createFilterData = (
   data: IPatient[]) => {
   const { filterByName, filterByEmail } = filter;
   const dataByName: IPatient[] = filterByName !== '' ? data
-  .filter(({patientName}) => patientName
-  .includes(filterByName)) :
+  .filter(({patientName}) => patientName.toUpperCase()
+  .includes(filterByName.toUpperCase())) :
   data;
   const dataByEmail = filterByEmail !== '' ? dataByName
   .filter(({email}) => email.includes(filterByEmail)) : dataByName;
